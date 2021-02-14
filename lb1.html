@@ -1,0 +1,152 @@
+<html>
+<head>
+</head>
+<body>
+	<script>
+    var mass1;
+	var mass2;
+    var mas1 = []; 
+    var mas2 = [];
+        function isInt(value) {
+            return !isNaN(value) && (function(x) { return (x | 0) === x; })(parseFloat(value))
+        }
+        
+        function cheсk(){
+            let result = '';
+            mass1=document.getElementById('mass1').value;
+            mass2=document.getElementById('mass2').value;
+            var tmas1 = mass1.split(" ");
+            var tmas2 = mass2.split(" ");
+            for(let i = 0; i<tmas1.length;i++){
+                let per; count = 0;
+                per = tmas1[i].split('');
+                    if(isNaN(per[0]) == true) 
+                        count++
+                    else alert("Ошибка в переменной: "+tmas1[i]+" в 1 символе");
+                    if(isInt(per[1]) == true && per[1]%2 == 1) 
+                        count++
+                    else alert("Ошибка в переменной: "+tmas1[i]+" в 2 символе");
+                    if(isInt(per[2]) == true) 
+                        count++
+                    else alert("Ошибка в переменной: "+tmas1[i]+" в 3 символе");
+                    if(isInt(per[3]) == true && per[3]%2 == 0) 
+                        count++
+                    else alert("Ошибка в переменной: "+tmas1[i]+" в 4 символе");
+                    if(count == 4) 
+                        mas1.push(tmas1[i]);        
+        }   
+        
+        for(let i = 0; i<tmas2.length;i++){
+            let per; count = 0;
+            per = tmas2[i].split('');
+                if(isNaN(per[0]) == true) 
+                    count++
+                else alert("Ошибка в переменной: "+tmas2[i]+" в 1 символе");
+                if(isInt(per[1]) == true && per[1]%2 == 1) 
+                    count++
+                else alert("Ошибка в переменной: "+tmas2[i]+" в 2 символе");
+                if(isInt(per[2]) == true) 
+                    count++
+                else alert("Ошибка в переменной: "+tmas2[i]+" в 3 символе");
+                if(isInt(per[3]) == true && per[3]%2 == 0) 
+                    count++
+                else alert("Ошибка в переменной: "+tmas2[i]+" в 4 символе");
+                if(count == 4) 
+                    mas2.push(tmas2[i]); 
+        }
+        }
+        
+        function union(){
+		   return mas1+','+mas2;
+		}
+        
+        function crossing(){
+        let result = '';
+		    var per1; const mainArray = [];
+            for(var i = 0; i < mas1.length;i++)
+            {
+                per1 = mas1[i]; 
+                for(var j = 0; j<mas2.length;j++)
+                {
+                    if(per1 == mas2[j])
+                        mainArray.push(per1);
+                }
+            }
+            result = "Результат пересечения: " + mainArray;
+            document.getElementById('resultCrossing').innerHTML = result;
+        }
+        
+	function rasch()
+	{
+		let result = "";
+		result = "Резултаты объединения: " + union();
+		document.getElementById('resultCale').innerHTML = result;
+	}	
+        
+        function addition(){
+            let result = ''; var index;
+		    var per1; const mainArray = [];
+            for(var i = 0; i < mas1.length;i++)
+            {
+                per1 = mas1[i]; 
+                for(var j = 0; j<mas2.length;j++)
+                {
+                    if(per1 == mas2[j]){
+                        index = mas1.indexOf(per1);
+                        mas1.splice(index, 1);
+                        i=i-1;
+                    }
+                        
+                }
+            }
+            result = "Результат дополнения: " + mas1;
+            document.getElementById('resultAddition').innerHTML = result;
+        }
+        
+        function difference(){
+            let result = ''; var index; var index2; var  mas11 = mas1; var mas22 = mas2;
+		    var per1; let mainArray = [];
+            for(var i = 0; i < mas1.length;i++)
+            {
+                per1 = mas1[i]; 
+                for(var j = 0; j<mas2.length;j++)
+                {
+                    if(per1 == mas2[j]){
+                        index = mas11.indexOf(per1);
+                        index2 = mas22.indexOf(per1)
+                        mas11.splice(index, 1);
+                        mas11.splice(index, 1);
+                        i=i-1;
+                }
+                        
+            }
+        }
+            result = "Результат симметрической разности: " + mas11 + "," + mas22;
+            document.getElementById('resultDifference').innerHTML = result;
+    }
+    
+    function tgth(){
+    cheсk();
+    rasch();
+    crossing();
+    addition();
+    difference();
+    }
+	</script>
+	<form>
+	      МассивA<input type='text' id='mass1' name''><br>
+	      МассивB<input type='text' id='mass2' name''><br>
+         
+	       <input type='button' value='Расчитать'onClick="tgth();"><br>
+    </form>
+	<div>
+	<div id='resultCale'>
+        </div>
+        <div id ='resultCrossing'>
+        </div>
+        <div id='resultAddition'>
+        </div>
+        <div id='resultDifference'></div>
+    </div>
+    </body>
+</html>

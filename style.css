@@ -1,0 +1,19 @@
+h1{
+    text-align: center;
+    font-size: 30px;
+    color:#77CBF4;
+    transition: all .5s;
+}
+summary{
+    margin: 50px 0;
+    color:#87187C;
+    transition: transform .5s ease;
+    cursor: pointer;
+}
+summary:hover{
+    transform: translateX(50px);
+}
+.kk{
+    color:#77CBF4;
+    
+}

@@ -1,5 +1,6 @@
 <html>
 <head>
+    <link rel="stylesheet" type="text/css" href="mycss/style.css">
 </head>
 <body>
 	<script>
@@ -20,39 +21,17 @@
             for(let i = 0; i<tmas1.length;i++){
                 let per; count = 0;
                 per = tmas1[i].split('');
-                    if(isNaN(per[0]) == true) 
-                        count++
-                    else alert("Ошибка в переменной: "+tmas1[i]+" в 1 символе");
-                    if(isInt(per[1]) == true && per[1]%2 == 1) 
-                        count++
-                    else alert("Ошибка в переменной: "+tmas1[i]+" в 2 символе");
-                    if(isInt(per[2]) == true) 
-                        count++
-                    else alert("Ошибка в переменной: "+tmas1[i]+" в 3 символе");
-                    if(isInt(per[3]) == true && per[3]%2 == 0) 
-                        count++
-                    else alert("Ошибка в переменной: "+tmas1[i]+" в 4 символе");
-                    if(count == 4) 
-                        mas1.push(tmas1[i]);        
+                    if(isNaN(per[0]) == true && isInt(per[1]) == true && per[1]%2 == 1 && isInt(per[2]) == true && isInt(per[3]) == true && per[3]%2 == 0)
+                        mas1.push(tmas1[i]);   
+                    //else alert(tmas1[i]);
         }   
         
         for(let i = 0; i<tmas2.length;i++){
             let per; count = 0;
             per = tmas2[i].split('');
-                if(isNaN(per[0]) == true) 
-                    count++
-                else alert("Ошибка в переменной: "+tmas2[i]+" в 1 символе");
-                if(isInt(per[1]) == true && per[1]%2 == 1) 
-                    count++
-                else alert("Ошибка в переменной: "+tmas2[i]+" в 2 символе");
-                if(isInt(per[2]) == true) 
-                    count++
-                else alert("Ошибка в переменной: "+tmas2[i]+" в 3 символе");
-                if(isInt(per[3]) == true && per[3]%2 == 0) 
-                    count++
-                else alert("Ошибка в переменной: "+tmas2[i]+" в 4 символе");
-                if(count == 4) 
+                if(isNaN(per[0]) == true && isInt(per[1]) == true && per[1]%2 == 1 && isInt(per[2]) == true && isInt(per[3]) == true && per[3]%2 == 0)
                     mas2.push(tmas2[i]); 
+            //else alert(tmas2[i]);
         }
         }
         
@@ -61,14 +40,14 @@
 		}
         
         function crossing(){
-        let result = '';
-		    var per1; const mainArray = [];
-            for(var i = 0; i < mas1.length;i++)
+        let result = ''; let mass1 = [];let mass2 = []; mass1 = mas1; mass2 = mas2;
+		    let per1; const mainArray = [];
+            for(let i = 0; i < mass1.length;i++)
             {
-                per1 = mas1[i]; 
-                for(var j = 0; j<mas2.length;j++)
+                per1 = mass1[i]; 
+                for(let j = 0; j<mass2.length;j++)
                 {
-                    if(per1 == mas2[j])
+                    if(per1 == mass2[j])
                         mainArray.push(per1);
                 }
             }
@@ -78,59 +57,57 @@
         
 	function rasch()
 	{
-		let result = "";
+		//alert(mas1);
+        let result = "";
 		result = "Резултаты объединения: " + union();
 		document.getElementById('resultCale').innerHTML = result;
 	}	
         
         function addition(){
-            let result = ''; var index;
-		    var per1; const mainArray = [];
-            for(var i = 0; i < mas1.length;i++)
-            {
-                per1 = mas1[i]; 
-                for(var j = 0; j<mas2.length;j++)
-                {
-                    if(per1 == mas2[j]){
-                        index = mas1.indexOf(per1);
-                        mas1.splice(index, 1);
-                        i=i-1;
+            //alert(mas1);
+            //alert(mas2);
+         let arr1 = mas1; let arr2 = mas2;
+            alert(mas1);
+          	for(let y = 0; y < arr1.length; y++){
+            	for(let k = 0; k < arr2.length;k++){
+                	if(arr1[y]==arr2[k]){
+                    arr1.splice(y, 1);
+                        y=y-1;
+                        alert(mas1);
                     }
-                        
                 }
             }
-            result = "Результат дополнения: " + mas1;
+            alert(mas1);
+            result = "Результат дополнения: " + arr1;
             document.getElementById('resultAddition').innerHTML = result;
         }
         
         function difference(){
-            let result = ''; var index; var index2; var  mas11 = mas1; var mas22 = mas2;
-		    var per1; let mainArray = [];
-            for(var i = 0; i < mas1.length;i++)
-            {
-                per1 = mas1[i]; 
-                for(var j = 0; j<mas2.length;j++)
-                {
-                    if(per1 == mas2[j]){
-                        index = mas11.indexOf(per1);
-                        index2 = mas22.indexOf(per1)
-                        mas11.splice(index, 1);
-                        mas11.splice(index, 1);
-                        i=i-1;
+           let index1; let index2;
+            //alert(mas1);
+            //alert(mas2);
+                for(let i = 0; i < mas1.length; i++){
+                    for(let j = 0; j < mas2.length;j++){
+                        if(mas1[i] == mas2[j]){
+                            index1 = mas1.indexOf(mas1[i]);
+                            index2 = mas2.indexOf(mas2[j]);
+                                mas1.splice(index1,1);
+                                mas2.splice(index2,1);
+                                i = i-1; 
+                        }
+                    }
                 }
-                        
-            }
-        }
-            result = "Результат симметрической разности: " + mas11 + "," + mas22;
+            
+            result = "Результат симметрической разности: " + mas1 + "," + mas2;
             document.getElementById('resultDifference').innerHTML = result;
-    }
+        }
     
     function tgth(){
     cheсk();
     rasch();
     crossing();
-    addition();
     difference();
+    addition();
     }
 	</script>
 	<form>
@@ -139,7 +116,7 @@
          
 	       <input type='button' value='Расчитать'onClick="tgth();"><br>
     </form>
-	<div>
+	<div class = "kk">
 	<div id='resultCale'>
         </div>
         <div id ='resultCrossing'>

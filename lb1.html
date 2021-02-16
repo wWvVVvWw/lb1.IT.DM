@@ -3,6 +3,18 @@
     <link rel="stylesheet" type="text/css" href="mycss/style.css">
 </head>
 <body>
+    <style>
+            body{background: #c7b39b url(k.jpg);}
+        </style>
+   <h1 class = "H">1-я лабораторная работа.</h1>
+    <div class = "Arr">
+        <p>По варианту задания переменная имеет форму "bicj"</p>
+        <p>b - Буква.</p>
+        <p>i - Чётное число.</p>
+        <p>c - Число.</p>
+        <p>j - Нечётно число.</p>
+    
+    </div>
 	<script>
     var mass1;
 	var mass2;
@@ -111,12 +123,14 @@
     }
 	</script>
 	<form>
-	      МассивA<input type='text' id='mass1' name''><br>
-	      МассивB<input type='text' id='mass2' name''><br>
+            <br>
+          <div>Введите данные</div>
+	      МассивA<input type='text' id='mass1' size = "40"><br>
+	      МассивB<input type='text' id='mass2' size = "40"><br>
          
-	       <input type='button' value='Расчитать'onClick="tgth();"><br>
+	       <input type='button' value='Расчитать'onClick="tgth();" style="position: relative; left: 130px; float: left; width: 10%"><br>
     </form>
-	<div class = "kk">
+	<div style = "color: white; font-size: 25px;">
 	<div id='resultCale'>
         </div>
         <div id ='resultCrossing'>
